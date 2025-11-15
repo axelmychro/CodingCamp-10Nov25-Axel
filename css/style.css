@@ -1,9 +1,25 @@
 :root {
-  --bg: #1e1e1e;
-  --text: #e1e1e1;
+  --bg: #030712;
+  --text: #d1d5db;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  font-family: "Playpen Sans", sans-serif;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+body h1,
+body h2,
+body button {
+  font-family: "Zain", sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
 }

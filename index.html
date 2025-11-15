@@ -3,41 +3,122 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-Do List!</title>
+    <title>to-do list app</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn.discordapp.com/attachments/1439059095079489558/1439059206635388968/favicon.ico?ex=691923d3&is=6917d253&hm=dfff77ae47fded088a1934a1537c96f83898d5ea9a9fb32bb7466def1f815df9"
+      type="image/x-icon"
+    />
+
+    <!-- csses: mine + tailwind -->
     <link rel="stylesheet" href="./css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- google fonts + icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&family=Oswald:wght@200..700&family=Playpen+Sans:wght@100..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap"
       rel="stylesheet"
     />
-
-    <style type="text/tailwindcss">
-      @theme {
-        --font-playpen: "Playpen Sans", ui-sans-serif, system-ui;
-        --font-oswald: "Oswald", ui-serif, Georgia;
-        --font-just: "Just Me Again Down Here", cursive;
-      }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   </head>
+
   <body>
-    <header>
-      <h1 class="text-4xl"></h1>
-      <div class="text-4xl font-bold">
-        Welcome,
-        <input
-          type="text"
-          id="fname"
-          name="fname"
-          placeholder="Your name"
-          class="border-b border-gray-400 bg-transparent focus:outline-none focus:border-blue-500 px-2"
-        />
-        !
-      </div>
+    <header class="fixed top-0 left-0 m-1 lg:flex items-center gap-8">
+      <h1 class="text-4xl m-4">to-do list <span class="text-sky-300">app</span></h1>
+      <form class="flex flex-row bg-gray-800 border-2 border-gray-600 rounded-sm p-2 w-fit h-fit">
+        <label for="username"
+          >welcome,&nbsp;
+          <input type="text" id="input-username" name="username" placeholder="username" maxlength="12" class="border-b-2 focus:outline-none w-32" />!
+        </label>
+      </form>
     </header>
-    <main><div></div></main>
-    <footer></footer>
+
+    <main class="flex flex-col lg:flex-row lg:gap-0 m-1 lg:m-auto items-center justify-evenly w-full h-full">
+      <section class="bg-gray-800 border-2 border-gray-600 rounded-xl p-2 w-fit h-fit">
+        <h2 class="text-4xl text-center p-2 flex items-center justify-center">
+          <span class="material-symbols-outlined text-sky-300">contract_edit</span>&nbsp;create item
+        </h2>
+        <form class="flex flex-col space-y-2">
+          <input
+            type="text"
+            id="input-todo-text"
+            name="text-input"
+            placeholder="new task, event, grocery..."
+            class="p-2 text-lg border-2 border-gray-600 rounded-sm focus:outline-none focus:border-sky-300 w-full"
+          />
+          <div class="flex flex-row space-x-2">
+            <input
+              type="date"
+              id="input-todo-date"
+              name="date-input"
+              class="p-2 text-lg border-2 border-gray-600 rounded-sm focus:outline-none focus:border-sky-300 flex-1"
+            />
+            <div class="relative flex flex-col">
+              <button
+                id="button-todo-tag"
+                type="button"
+                class="bg-yellow-800 transition-colors hover:bg-yellow-600 duration-300 border-2 border-yellow-600 rounded-lg p-1 text-xl flex items-center justify-center w-full h-full"
+              >
+                <span class="material-symbols-outlined text-yellow-300">tag</span><span id="tag-label">Tag</span>
+              </button>
+              <div id="tags-radio" class="hidden bg-gray-800 border-2 border-gray-600 p-2 rounded-sm absolute flex-col top-16 right-0 w-fit h-fit">
+                <label class="flex text-lg gap-2"><input type="radio" name="tag" value="assigment" />assigment</label>
+                <label class="flex text-lg gap-2"><input type="radio" name="tag" value="travel" />travel</label>
+                <label class="flex text-lg gap-2"><input type="radio" name="tag" value="shopping" />shopping</label>
+                <button
+                  id="button-tag-save"
+                  type="button"
+                  class="bg-yellow-800 transition-colors hover:bg-yellow-600 duration-300 border-2 border-yellow-600 rounded-lg p-1 text xl"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+            <button
+              id="button-todo-new"
+              onclick="addTodo()"
+              type="button"
+              class="bg-green-800 transition-colors hover:bg-green-600 duration-300 border-2 border-green-600 rounded-lg p-1 text-xl flex items-center justify-center w-auto h-auto"
+            >
+              <span class="material-symbols-outlined text-green-300">add</span>Add
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="bg-gray-800 border-2 border-gray-600 rounded-xl p-2 w-fit h-fit flex flex-col">
+        <h2 class="text-4xl text-center p-2 flex items-center justify-center">
+          <span class="material-symbols-outlined text-sky-300">list_alt</span>&nbsp;to-do list
+        </h2>
+        <ul id="todo-list" class="list-disc px-4 space-y-2 flex-1">
+          <span class="text-gray-600">nothing to do, yet...<br />find something to do, add it here<br />just click an item to cross it out</span>
+        </ul>
+        <div class="flex justify-between m-2">
+          <button
+            id="button-todo-filter"
+            type="button"
+            class="bg-blue-800 hover:bg-blue-600 transition-colors duration-300 border-2 border-blue-600 p-1 rounded-lg text-xl flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-blue-300">filter_alt</span><span id="filter-label">Filter</span>
+          </button>
+          <button
+            id="button-todo-clear"
+            type="button"
+            onclick="clearTodo()"
+            class="bg-red-800 border-2 hover:bg-red-600 transition-colors duration-300 border-red-600 p-1 rounded-lg text-xl flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-red-300">delete</span>Clear
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="fixed bottom-0 left-0 m-1">
+      <div class="bg-gray-800 border-2 border-gray-600 p-2 rounded-xl">&copy; 2025 <span class="text-sky-300">Axel</span></div>
+    </footer>
+
+    <script src="./js/script.js"></script>
   </body>
 </html>
