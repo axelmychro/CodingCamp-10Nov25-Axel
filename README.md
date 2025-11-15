@@ -21,7 +21,6 @@ A sleek, modern to-do list application built with vanilla JavaScript, Tailwind C
 │   └── style.css       # Custom styles and CSS variables
 ├── js/
 │   └── script.js       # Core application logic
-├── tailwind.config.js  # Tailwind CSS configuration
 └── README.md           # This file
 ```
 
@@ -29,8 +28,8 @@ A sleek, modern to-do list application built with vanilla JavaScript, Tailwind C
 
 - **HTML5** - Semantic markup
 - **CSS3** - Custom styles with Tailwind CSS framework
-- **JavaScript (Vanilla)** - No frameworks, pure ES6+
-- **Tailwind CSS 4** - Utility-first CSS framework
+- **JavaScript** - No frameworks, pure ES6+
+- **Tailwind CSS v4** - Utility-first CSS framework
 - **Google Fonts** - Playpen Sans and Zain typefaces
 - **Material Symbols** - Icon library from Google
 - **LocalStorage API** - Client-side data persistence
